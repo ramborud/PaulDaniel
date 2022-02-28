@@ -1,0 +1,15 @@
+Tenant
+==================================================
+Domain: bca.coop
+Admin account: pruddy@bca.coop
+Admin password: DylanRambo!321
+Tenant ID: 9a7cfc56-bd6e-448f-b3da-98b6cb19bae8
+
+Power BI
+==================================================
+Workspace ID: 2e273a71-5ff6-438e-9c27-8344207c5fe6 
+
+Azure AD app
+==================================================
+Client ID: 409b5f97-7ebd-4279-bd21-fbd3b502293b
+Client secret: 3Fx7Q~376Vb3OnIF_PrDFFob50~gqTn2dBlbg 
