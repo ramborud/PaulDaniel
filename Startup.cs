@@ -23,25 +23,26 @@ namespace BCASolution
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             string[] scopes = new string[] { PowerBiApiService.PowerBiDefaultScope };
-services.AddMicrosoftIdentityWebAppAuthentication(Configuration) 
-	// Enable token acquisition from ITokenAcquisition
-	.EnableTokenAcquisitionToCallDownstreamApi(scopes)
-	// Enable token caching
-	.AddInMemoryTokenCaches();
-	
-	// Allow injecting the custom class in controllers
-	services.AddScoped(typeof(PowerBiApiService));
-    
-    services.AddControllersWithViews();
-    services.AddControllersWithViews(options =>
-    {
-      var policy = new AuthorizationPolicyBuilder()
-          .RequireAuthenticatedUser()
-          .Build();
-      options.Filters.Add(new AuthorizeFilter(policy));
-    }).AddMicrosoftIdentityUI();
+            services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
+                // Enable token acquisition from ITokenAcquisition
+                .EnableTokenAcquisitionToCallDownstreamApi(scopes)
+                // Enable token caching
+                .AddInMemoryTokenCaches();
+
+            // Allow injecting the custom class in controllers
+            services.AddScoped(typeof(PowerBiApiService));
+
+            services.AddControllersWithViews(options =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+            }).AddMicrosoftIdentityUI();
+
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +55,7 @@ services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.  
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -71,6 +72,7 @@ services.AddMicrosoftIdentityWebAppAuthentication(Configuration)
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
             });
         }
     }
