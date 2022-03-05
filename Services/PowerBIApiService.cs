@@ -117,12 +117,7 @@ namespace PowerBiEmbed.Services
                 // Generate the embed token
                 embedToken = (await client.EmbedToken.GenerateTokenAsync(tokenRequest)).Token;
             }
-            catch (Exception ex)
-            {
-                var d = ex.Message;
-
-            }
-
+            catch (Exception ex) { }
 
             // Return report embedding data to caller
             return new WorkspaceViewModel
@@ -132,7 +127,5 @@ namespace PowerBiEmbed.Services
                 EmbedToken = embedToken
             };
         }
-
-
     }
 }
